@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+    <title>Unit 1 Quiz</title>
+    <head>
+        <style>
+            h2 {
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                font-size: 20px;
+                text-align: center;
+                font-weight: normal;
+            }
+
+            .pTitle {
+                background-color: black;
+                color: white;
+            }
+
+            .pProgress {
+                background-color: navy;
+                color: white;
+                text-align: center;
+            }
+
+            html, body {
+                margin: 0px;
+                padding: 0px;
+            }
+
+            p {
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                font-size: 16px;
+            }
+
+            button {
+                background-color: navy;
+                padding: 30px;
+                border: navy;
+                color: white;
+                font-size: 16px;
+                font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                transition-duration: 0.3s;
+            }
+
+            button:hover {
+                background-color: white;
+                border: 1px solid black;
+                color: navy;
+                cursor: pointer;
+            }
+
+            input, label {
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                font-size: 16px;
+                margin-top: 50px;
+                margin-bottom: 50px;
+                margin-left: 60px;
+            }
+
+            dialog {
+                padding: 30px;
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                font-size: 16px;
+            }
+
+            
+        </style>
+    </head>
+    <body>
+        <div class="pTitle">
+            <br><h2>Unit 1 Quiz</h2><br>
+        </div>
+        <div class="pProgress">
+             <br><p id="qStatus">Question Template</p><br>
+        </div>
+        <br><br>
+        <p id="question" style="text-align: center;">Question Goes Here!</p>
+        <br>
+
+        <input type="radio" id="op1" name="option" value="Option 1">
+        <label id="l1" for="op1">Option 1</label><br>
+        <input type="radio" id="op2" name="option" value="Option 2">
+        <label id="l2" for="op2">Option 2</label><br>
+        <input type="radio" id="op3" name="option" value="Option 3">
+        <label id="l3" for="op3">Option 3</label><br>
+        <input type="radio" id="op4" name="option" value="Option 4">
+        <label id="l4" for="op4">Option 4</label>
+
+        <br>
+        <br>
+        <center><button>Submit</button></center>
+        <br>
+        <center><p id="score">Score: 0 / 0</p></center>
+
+
+        <!-- Dialog -->
+         <dialog id="anticheat">
+            <h2>Warning!</h2>
+            <p>Our systems have detected that you left this tab recently. You are NOT allowed to switch tabs while on a quiz or test.</p>
+            <center><button onclick="document.getElementById('anticheat').close()">Acknowledge</button></center>
+         </dialog>
+
+         <dialog id="cancelled">
+            <h2>NOTICE</h2>
+            <p>Your test has been cancelled due to repeated tab switching.</p>
+            <center><a href="../../index.html"><button>Close Test</button></a></center>
+         </dialog>
+
+         <dialog id="correct">
+            <h2>Correct!</h2>
+            <p>Nice job! Click "Next" to move on.</p>
+            <center><button onclick="document.getElementById('correct').close()">Next</button></center>
+         </dialog>
+
+         <dialog id="incorrect">
+            <h2>Incorrect!</h2>
+            <p>Click "Next" to move on.</p>
+            <center><button onclick="document.getElementById('incorrect').close()">Next</button></center>
+         </dialog>
+
+         <dialog id="passed">
+            <h2>Congratulations!</h2>
+            <p>You passed this quiz!</p>
+            <center><a href="../../LS02a7493jQ55/presentation.html"><button>Next Lesson</button></a></center>
+         </dialog>
+
+         <dialog id="failed">
+            <h2>Sorry!</h2>
+            <p>You did not pass this quiz!</p>
+            <center><a href="../presentation.html"><button>Return to Previous Lesson</button></a></center>
+         </dialog>
+    </body>
+
+    <script>
+        const numQuestions = 6;
+        let numCorrect = 0;
+        let passingScore = 5;
+        let i = 0;
+        let warnings = 0;
+        const button = document.querySelector("button");
+        const questionNum = document.getElementById("qStatus");
+        const question = document.getElementById("question");
+        const option1 = document.getElementById("l1");
+        const option2 = document.getElementById("l2");
+        const option3 = document.getElementById("l3");
+        const option4 = document.getElementById("l4");
+        const score = document.getElementById("score");
+        let qList = ["What is one of the top 5 causes of accidents in the U.S.?", "Safely sharing the roadway with other drivers and pedestrians is essential for avoiding accidents.", "A vehicle is capable of causing extensive property damage, injury, and death. You should operate your vehicle with extreme caution, because it is like handling ___________.", "The main purpose of driver education is to help you _________________.", "Driving in California is ____________?", "Yield means _____________"];
+        let answerList = [["Listening to the radio while driving", "Failure to yield the right of way to others", "Using a cell phone while driving", "None of the above"],
+                          ["True", "False", "", ""],
+                          ["your dog", "a gun", "a toy", "None of the above"],
+                          ["obtain lower insurance rates", "pass time during summer vacation", "to get better financing for your car purchase", "learn the skills, knowledge, and attitudes needed for greater car safety"],
+                          ["a priviledge granted by the state", "legal for all residents", "a right all citizens are entitled to", "guaranteed by the Constitution"],
+                          ["that you have the right-of-way over others", "to let other drivers, pedestrians, and bicycles have the right-of-way before you proceed", "that other vehicles should slow down when seeing your vehicle", "none of the above"]];
+        let correctAnswers = ["Option 2", "Option 1", "Option 2", "Option 4", "Option 1", "Option 2"];
+        
+        function loadQuestion() {
+            questionNum.textContent = "Question " + (i + 1);
+            question.textContent = qList[i];
+            option1.textContent = answerList[i][0];
+            option2.textContent = answerList[i][1];
+            option3.textContent = answerList[i][2];
+            option4.textContent = answerList[i][3];
+        }
+
+        function clearRadioButton(groupName) {
+            const radios = document.querySelectorAll('input[name="${groupname}"]');
+            radios.forEach(radio => radio.checked = false);
+        }
+
+        document.addEventListener("visibilitychange", () => {
+            if (document.visibilityState === "visible") {
+                console.log("Welcome back! Tab is active.");
+                // Resume video or restart polling
+            } else if (warnings == 0 && i < numQuestions) {
+                document.getElementById("anticheat").showModal();
+                // Pause video or save user progress
+                warnings++;
+            } else {
+                if (i < numQuestions)
+                document.getElementById("cancelled").showModal();
+            }
+        });
+
+        loadQuestion();
+        button.addEventListener('click', function() {
+            const selectedRadio = document.querySelector('input[name="option"]:checked');
+            if (!selectedRadio) {
+                alert("You must select an answer!");
+            } else {
+                console.log(selectedRadio.value);
+
+                if (selectedRadio.value == correctAnswers[i]) {
+                    document.getElementById("correct").showModal();
+                    numCorrect++;
+                } else {
+                    document.getElementById("incorrect").showModal();
+                }
+                i++;
+                score.textContent = "Score: " + numCorrect + " / " + i
+                if (i < numQuestions) {
+                    clearRadioButton("option");
+                    loadQuestion();
+                } else {
+                    if (numCorrect >= 5) { document.getElementById("passed").showModal(); }
+                    else { document.getElementById("failed").showModal(); }
+                }
+        }
+        })
+    </script>
+</html>
