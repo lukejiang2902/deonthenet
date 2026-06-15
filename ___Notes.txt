@@ -1,0 +1,9 @@
+scripts are in Apache because they are php but must reside in lss8wqreph7490dp4zx8f_v5.0 on the server
+
+during final conversion:
+contents of lss8wqreph7490dp4zx8f_v5.0 must replace contents of lss8wqreph7490dp4zx8f.The simplest way is to 
+1. upload everything into lss8wqreph7490dp4zx8f_v5.0 (lessons and scripts)
+2. delete the entire lss8wqreph7490dp4zx8f folder
+3. rename folder lss8wqreph7490dp4zx8f_v5.0 to lss8wqreph7490dp4zx8f
+
+scripts are in Apache because they are php but must reside in lss8wqreph7490dp4zx8f_v5.0 on the server
